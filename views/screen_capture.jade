@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    .row#screenCapture
+        .col-md-12
+            div.list-group-item Capture any website's screenshot Online and output it as image or pdf.
+                | Using Nodejs with PhantomJS  capturing any website screen shot programitcally is possible
+                | you just have to enter the website name and the dimension in which you want the output screen shots.
+        .col-md-12
+            form(v-on:submit.prevent="getScreenShot")
+                ul.list-group
+                    li.list-group-item.active Website SnapShot
+                    li.list-group-item
+                            div Enter Domain Name
+                            input(type="url" name="url" v-model="screen.url" placeholder="Enter Url...").form-control
+                    li.list-group-item
+                        .row
+                            .col-md-6
+                                div Enter Width of website
+                                    input(type="number" name="width" value="1024" placeholder="Enter Width" v-model="screen.width").form-control
+                            .col-md-6
+                                div Enter Height of website
+                                    input(type="number" name="height" value="728" placeholder="Enter height" v-model="screen.height").form-control
+                    li.list-group-item
+                        div Enter the interval after snap is taken in seconds
+                        input(type="number" v-model="screen.timeout" name="timeout" class="form-control" value="0")
+                    li.list-group-item
+                         input(type="submit" ).btn.btn-default
+        .col-md-12()
+            ul.list-group
+                li.list-group-item(v-if="screen.webImage ")
+                    img(v-if="loading" src="/images/loading.gif")
+                    a.btn.btn-default(v-if="!loading" href="/screen/download?file={{screen.webImage}}.png") Download as Image
+                    a.btn.btn-default(v-if="!loading" href="/screen/download?file={{screen.webImage}}.pdf&type=pdf") Download as PDF
+                    br
+                    br
+                    div.alert.alert-success
+                        div(v-if="loading") Loading Image...
+                        img(src="webshots/{{ screen.webImage}}.png" onerror="imageLoadError()" onload="imageLoaded()" class="img img-responsive")

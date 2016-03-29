@@ -1,0 +1,25 @@
+{
+  "name": "save2drive",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "forever start --minUptime 1000 --spinSleepTime 1000 app.js",
+    "stop": "forever stop app.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "emailjs": "^1.0.4",
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "morgan": "~1.6.1",
+    "pdfkit": "^0.7.2",
+    "phantomjs": "^2.1.3",
+    "serve-favicon": "~2.3.0",
+    "shelljs": "^0.6.0",
+    "socketio": "^1.0.0",
+    "url": "^0.11.0",
+    "webpage": "^0.3.0"
+  }
+}
